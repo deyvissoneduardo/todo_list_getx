@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../pages/add_tasks.dart';
-import '../pages/home_page.dart';
+import '../modules/home/home_page.dart';
+import '../modules/tasks/add_tasks.dart';
 
 class Routes {
   static const HOMEPAGE = '/home_page';
