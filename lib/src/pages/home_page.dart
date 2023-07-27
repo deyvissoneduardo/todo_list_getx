@@ -5,6 +5,7 @@ import '../../main.dart';
 import '../controllers/task_controller.dart';
 import '../controllers/textfiled_controller.dart';
 import '../core/helpers/constantes.dart';
+import '../routes/routes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,12 +39,12 @@ class MyFloatingActionButton extends StatelessWidget {
       heroTag: 'hero',
       backgroundColor: kLightBlueColor,
       elevation: 1,
-      tooltip: 'Add Task',
+      tooltip: 'Criar Tarefa',
       onPressed: () {
         Get.find<TaskController>().isEditing = false;
         Get.find<TextFieldController>().taskTitle!.text = '';
         Get.find<TextFieldController>().taskSubtitle!.text = '';
-        Get.toNamed('/addtasksscreen')!.then((value) {
+        Get.toNamed(Routes.TASKPAGE)!.then((value) {
           return MyApp.changeNavBarColor(kLightBlueColor, Brightness.light);
         });
       },
@@ -79,7 +80,7 @@ class BottomSectionWidget extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: Text(
-                        'Latest',
+                        'Ultima Tarefa',
                         style: TextStyle(
                           fontWeight: FontWeight.w200,
                           color: Colors.grey,
@@ -97,11 +98,11 @@ class BottomSectionWidget extends StatelessWidget {
                             return ListTile(
                               onLongPress: () {
                                 Get.defaultDialog(
-                                  title: 'Warning!',
-                                  middleText: 'Are you sure?',
-                                  textConfirm: 'Yes',
+                                  title: 'Atenção!',
+                                  middleText: 'Tem certeza?',
+                                  textConfirm: 'Confirmar',
                                   confirmTextColor: Colors.white,
-                                  textCancel: 'Cancel',
+                                  textCancel: 'Cancelar',
                                   onConfirm: () {
                                     Get.find<TaskController>()
                                         .tasks
@@ -124,7 +125,7 @@ class BottomSectionWidget extends StatelessWidget {
                                     .taskSubtitle!
                                     .text = task.subtitle!;
                                 //
-                                Get.toNamed('/addtasksscreen');
+                                Get.toNamed(Routes.TASKPAGE);
                               },
                               title: Text(
                                 task.title ?? '',
@@ -173,7 +174,7 @@ class BottomSectionWidget extends StatelessWidget {
                   ],
                 )
               : const Center(
-                  child: Text('No Task Added!'),
+                  child: Text('Sem Tarefas!'),
                 ),
         );
       }),
@@ -213,7 +214,7 @@ class TopSectionWidget extends StatelessWidget {
                 Row(
                   children: [
                     Tooltip(
-                      message: 'Delete All Tasks',
+                      message: 'Deletar Todas Tarefas',
                       child: IconButton(
                         onPressed: () {
                           Get.find<TaskController>().tasks.value = [];
@@ -226,7 +227,7 @@ class TopSectionWidget extends StatelessWidget {
                       ),
                     ),
                     Tooltip(
-                      message: 'Your Profile',
+                      message: 'Perfil',
                       child: IconButton(
                         onPressed: () {},
                         icon: const Icon(
@@ -257,7 +258,7 @@ class TopSectionWidget extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(left: 48.0, top: 12.0),
             child: const Text(
-              'All',
+              'Todas',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 30.0,
@@ -271,7 +272,7 @@ class TopSectionWidget extends StatelessWidget {
             ),
             child: Obx(() {
               return Text(
-                '${Get.find<TaskController>().tasks.length} Tasks',
+                '${Get.find<TaskController>().tasks.length} Tarefas',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,

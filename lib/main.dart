@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.leftToRight,
       getPages: Routes.pages,
-      initialRoute: '/home_page',
+      initialRoute: Routes.HOMEPAGE,
     );
   }
 }
